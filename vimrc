@@ -20,7 +20,7 @@ set backspace=indent,eol,start
 " cos we're a pro hatzker
 set background=dark
 " only for the console, overriden in gvimrc for the gVim
-colorscheme desert
+colorscheme solarized
 " enable syntax highlighting
 syntax on
 " highlight a line where the cursor is
@@ -30,7 +30,7 @@ set cursorline
 set nobackup      
 
 " use build.bat file in current directory as a default 'make tool'
-set makeprg=build.bat
+set makeprg=build.bat\ %
 " this should be cl compiler error message format
 set errorformat=%f(%l):\ %m
 
@@ -51,13 +51,10 @@ let mapleader = ","
 " Allow to operate in normal mode when russian layout is active
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
-" No more shift for the command mode in normal mode!
-nnoremap ; :
-" No more shift for the command mode in visual mode!
-vnoremap ; :
-
 noremap! <F9> <C-o>:make<CR>
 noremap <F9> :make<CR>
+noremap <C-s> :update<CR>
+noremap <F5> <C-W><C-W>run.bat<CR><C-W><C-W>
 noremap <C-s> :update<CR>
 
 noremap <Leader>f :Files<CR>
@@ -68,6 +65,9 @@ noremap <Leader>m :Marks<CR>
 
 noremap <Leader>n :set number relativenumber!<CR>
 noremap <Leader>l :set list!<CR>
+
+noremap <silent> [b :bprevious!<CR>
+noremap <silent> ]b :bnext!<CR>
 
 "===============================================================================
 
@@ -87,6 +87,7 @@ call plug#begin()
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'jansedivy/jai.vim'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
