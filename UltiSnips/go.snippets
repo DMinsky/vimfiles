@@ -1,0 +1,23 @@
+snippet main "A simple go file"
+package main
+
+import (
+	"fmt"
+	$1
+)
+
+func main() {
+	$2
+}
+endsnippet
+
+snippet print "fmt.Println()"
+fmt.Println($1)
+endsnippet
+
+snippet fu "func ()"
+func ${1:name}($2) {
+	$3
+}
+
+endsnippet
