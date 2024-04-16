@@ -1,0 +1,40 @@
+snippet modulecpp "Default Module Implementation"
+#include "$1.h"
+#include "Modules/ModuleManager.h"
+
+void F$1::StartupModule()
+{
+	UE_LOG(LogTemp, Log, TEXT("$1 module starting up"));
+}
+
+void F$1::ShutdownModule()
+{
+	UE_LOG(LogTemp, Log, TEXT("$1 module shutting down"));
+}
+
+IMPLEMENT_PRIMARY_GAME_MODULE(F$1, $1, "$1");
+endsnippet
+
+snippet moduleh "Default Module Definition"
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Modules/ModuleInterface.h"
+
+class F$1 : public IModuleInterface
+{
+	public:
+		static inline F$1& Get()
+		{
+			return FModuleManager::LoadModuleChecked<F$1>("$1");
+		}
+
+		static inline bool IsAvailable()
+		{
+			return FModuleManager::Get().IsModuleLoaded("$1");
+		}
+
+		virtual void StartupModule() override;
+		virtual void ShutdownModule() override;
+};
+endsnippet

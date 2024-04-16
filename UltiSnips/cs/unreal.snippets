@@ -1,0 +1,28 @@
+snippet target "Default Game Target"
+using UnrealBuildTool;
+
+public class $1Target : TargetRules
+{
+	public $1Target(TargetInfo Target) : base(Target)
+	{
+		Type = TargetType.Game;
+		DefaultBuildSettings = BuildSettingsVersion.V2;
+		ExtraModuleNames.AddRange( new string[] { "$2" } );
+	}
+}
+endsnippet
+
+snippet build "Default Module Build"
+using UnrealBuildTool;
+
+public class $1Core : ModuleRules
+{
+	public $1Core(ReadOnlyTargetRules Target) : base(Target)
+	{
+		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+		bEnforceIWYU = true;
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine" } );
+		PrivateDependencyModuleNames.AddRange(new string[] {} );
+	}
+}
+endsnippet
