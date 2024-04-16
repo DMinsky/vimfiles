@@ -42,6 +42,11 @@ set smartcase
 " shole line numbers on the left
 set number
 
+" to avoid 'press ENTER ...' after !cmd
+set cmdheight=2
+" Disable damn bell sound on error and do flash instead
+set visualbell
+
 
 "=== Keyboard bindings =========================================================
 
