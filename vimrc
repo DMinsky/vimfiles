@@ -151,6 +151,7 @@ call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'DMinsky/jai.vim'
+Plug 'DMinsky/asmM6502vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'DMinsky/vim-colors-solarized'
