@@ -51,14 +51,17 @@ let mapleader = ","
 " Allow to operate in normal mode when russian layout is active
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
-noremap! <F9> <C-o>:make<CR>
-noremap <F9> :make<CR>
 noremap <C-s> :update<CR>
-noremap <F5> <C-W><C-W>run.bat<CR><C-W><C-W>
+noremap <F9> :!build <C-R>=expand('%')<CR><CR>
+inoremap <F5> <C-c>:w<CR>:!build <C-R>=expand('%')<CR> && run <C-R>=expand('%')<CR><CR>
+noremap <F5> <C-c>:w<CR>:!build <C-R>=expand('%')<CR> && run <C-R>=expand('%')<CR><CR>
+noremap <C-F5> :!<c-r>=expand('%:r')<CR><CR>
+noremap <S-F5> :!remedybg <c-r>=expand('%:r')<CR><CR>
 noremap <C-s> :update<CR>
 
 noremap <Leader>f :Files<CR>
-noremap <Leader>r :Rg<CR>
+nnoremap <Leader>r :Rg <C-R><C-W><CR>
+nnoremap <Leader>R :Rg<CR>
 noremap <Leader>b :Buffers<CR>
 noremap <Leader>t :Tags<CR>
 noremap <Leader>m :Marks<CR>
