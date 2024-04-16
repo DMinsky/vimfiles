@@ -104,7 +104,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'jansedivy/jai.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'SirVer/ultisnips'
+if has('python3')
+	Plug 'SirVer/ultisnips'
+endif
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
