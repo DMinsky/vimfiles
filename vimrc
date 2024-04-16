@@ -101,7 +101,7 @@ call plug#begin()
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'jansedivy/jai.vim'
+Plug 'DMinsky/jai.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 if has('python3')
