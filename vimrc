@@ -21,8 +21,6 @@ set backspace=indent,eol,start
 set background=dark
 " enable syntax highlighting
 syntax on
-" highlight a line where the cursor is
-set cursorline
 
 " do not save backup files
 set nobackup      
@@ -177,5 +175,10 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" only for the console, overriden in gvimrc for the gVim
-colorscheme solarized
+
+if &term != 'win32'
+	" only for the console, overriden in gvimrc for the gVim
+	colorscheme solarized
+	" highlight a line where the cursor is
+	set cursorline
+endif
