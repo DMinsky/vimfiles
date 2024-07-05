@@ -43,6 +43,9 @@ set cmdheight=2
 " Disable damn bell sound on error and do flash instead
 set visualbell
 
+" Treat all the numbers as base10
+set nrformats=
+
 
 "=== Keyboard bindings =========================================================
 
@@ -74,10 +77,10 @@ noremap <silent> [b :bprevious!<CR>
 noremap <silent> ]b :bnext!<CR>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+" xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+" nmap ga <Plug>(EasyAlign)
 
 "===============================================================================
 
@@ -153,6 +156,9 @@ Plug 'DMinsky/asmM6502vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'DMinsky/vim-colors-solarized'
+Plug 'lambdalisue/fern.vim'
+Plug 'dyng/ctrlsf.vim'
+Plug 'tpope/vim-commentary'
 if has('python3')
 	Plug 'SirVer/ultisnips'
 endif
