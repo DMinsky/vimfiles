@@ -4,3 +4,12 @@ set guifont=JetBrains\ Mono\ Regular:h12
 colorscheme solarized
 " fancy symbols for showing whitespaces
 set listchars=eol:↩,space:·,tab:⇥\  
+" disable menu
+set guioptions -=m
+" disable tool bar
+set guioptions -=T
+" disable scroll bars
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
