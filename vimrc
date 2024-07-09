@@ -13,6 +13,11 @@ set cindent
 " show cursor column and line
 set ruler
 
+" show autocompletion variants on Tab in Ex mode
+set wildmenu
+" complete next full match and cycle after the end of matches
+set wildmode=full
+
 " allow backspacing at the indentation, end of the line and the start of the line
 " so it basically behaves as a normal backspace in a normal text editor
 set backspace=indent,eol,start
@@ -22,8 +27,14 @@ set background=dark
 " enable syntax highlighting
 syntax on
 
+" hightlight search results
+set hls
+
 " do not save backup files
 set nobackup      
+
+" set length of history in Ex mode
+set history=100
 
 " use build.bat file in current directory as a default 'make tool'
 set makeprg=build.bat\ %
@@ -75,6 +86,9 @@ noremap <Leader>l :set list!<CR>
 
 noremap <silent> [b :bprevious!<CR>
 noremap <silent> ]b :bnext!<CR>
+
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 " xmap ga <Plug>(EasyAlign)
