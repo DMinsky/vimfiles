@@ -1,0 +1,29 @@
+snippet main "Main function"
+main :: () {
+	$1
+}
+endsnippet
+
+snippet print "Print function"
+print("$1%\n", $2);
+endsnippet
+
+snippet basic "Import Basic module"
+#import "Basic";$1
+endsnippet
+
+snippet import "Import module"
+#import "$1";
+endsnippet
+
+snippet proc "Procedure"
+$1 :: ($2) {
+	$3
+}
+endsnippet
+
+snippet struct "Struct"
+$1 :: struct {
+	$2
+}
+endsnippet
