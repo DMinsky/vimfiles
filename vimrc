@@ -1,7 +1,7 @@
 " UTF-8 for everyone everywhere!
 set encoding=utf8
 " always use tabs, do not expand to whitespaces
-set noexpandtab
+set expandtab
 " how many columns of whitespace is a \t char worth? 
 set tabstop=4
 " how many columns of whitespace a “level of indentation” is worth
@@ -10,6 +10,9 @@ set shiftwidth=4
 set softtabstop=4
 " somehow smart indentation for c 
 set cindent
+" to preserve space alinging on next line
+set copyindent
+set preserveindent
 " show cursor column and line
 set ruler
 
@@ -68,8 +71,8 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNO
 
 noremap <C-s> :update<CR>
 noremap <F9> :!build <C-R>=expand('%')<CR><CR>
-inoremap <F5> <C-c>:w<CR>:!build <C-R>=expand('%')<CR> && run <C-R>=expand('%')<CR><CR>
-noremap <F5> <C-c>:w<CR>:!build <C-R>=expand('%')<CR> && run <C-R>=expand('%')<CR><CR>
+inoremap <F5> <C-c>:w<CR>:!build <C-R>=expand('%')<CR> && <C-R>=expand('%:r').'.exe'<CR><CR>
+noremap <F5> <C-c>:w<CR>:!build <C-R>=expand('%')<CR> && <C-R>=expand('%:r').'.exe'<CR><CR>
 noremap <C-F5> :!<c-r>=expand('%:r')<CR><CR>
 noremap <S-F5> :!remedybg <c-r>=expand('%:r')<CR><CR>
 noremap <C-s> :update<CR>
@@ -89,6 +92,13 @@ noremap <silent> ]b :bnext!<CR>
 
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
+
+" Make double-<Esc> clear search highlights
+nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
+nnoremap <silent> <C-l> :nohl<CR>
+
+" Expand %% in Ex mode to current buffer file path
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 " xmap ga <Plug>(EasyAlign)
