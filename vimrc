@@ -15,6 +15,8 @@ set copyindent
 set preserveindent
 " show cursor column and line
 set ruler
+" don't break words at the end of line
+set linebreak
 
 " show autocompletion variants on Tab in Ex mode
 set wildmenu
