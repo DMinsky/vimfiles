@@ -1,3 +1,6 @@
+" directory to save .swp files
+set directory=~/vimswap//
+
 " UTF-8 for everyone everywhere!
 set encoding=utf8
 " always use tabs, do not expand to whitespaces
@@ -62,8 +65,23 @@ set visualbell
 " Treat all the numbers as base10
 set nrformats=
 
+"=== My Functions ==============================================================
+function! HeaderToggle()
+    let extension = expand("%:t:e")
+    if extension == "h"
+        :find %:t:r.cpp
+    else
+        :find %:t:r.h
+    endif
+endfunction
 
 "=== Keyboard bindings =========================================================
+
+" Sane navigation between display lines
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
 
 " Set a leader key
 let mapleader = ","  
@@ -73,8 +91,12 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNO
 
 noremap <C-s> :update<CR>
 noremap <F9> :!build <C-R>=expand('%')<CR><CR>
-inoremap <F5> <C-c>:w<CR>:!build <C-R>=expand('%')<CR> && <C-R>=expand('%:r').'.exe'<CR><CR>
-noremap <F5> <C-c>:w<CR>:!build <C-R>=expand('%')<CR> && <C-R>=expand('%:r').'.exe'<CR><CR>
+" inoremap <F5> <C-c>:w<CR>:!build <C-R>=expand('%')<CR> && <C-R>=expand('%:r').'.exe'<CR><CR>
+" noremap <F5> <C-c>:w<CR>:!build <C-R>=expand('%')<CR> && <C-R>=expand('%:r').'.exe'<CR><CR>
+" inoremap <F5> <C-c>:w<CR>:!build <C-R>=expand('%')<CR><CR>
+" noremap <F5> <C-c>:w<CR>:!build <C-R>=expand('%')<CR><CR>
+inoremap <F5> :make<CR>
+noremap <F5> :make<CR>
 noremap <C-F5> :!<c-r>=expand('%:r')<CR><CR>
 noremap <S-F5> :!remedybg <c-r>=expand('%:r')<CR><CR>
 noremap <C-s> :update<CR>
@@ -83,11 +105,12 @@ noremap <Leader>f :Files<CR>
 nnoremap <Leader>r :Rg <C-R><C-W><CR>
 nnoremap <Leader>R :Rg<CR>
 noremap <Leader>b :Buffers<CR>
-noremap <Leader>t :Tags<CR>
+noremap <Leader>t :call fzf#vim#tags(expand('<cword>'))<CR>
 noremap <Leader>m :Marks<CR>
 
 noremap <Leader>n :set number relativenumber!<CR>
 noremap <Leader>l :set list!<CR>
+noremap <Leader>k :call HeaderToggle()<CR>
 
 noremap <silent> [b :bprevious!<CR>
 noremap <silent> ]b :bnext!<CR>
@@ -214,3 +237,18 @@ if &term != 'win32'
 	" highlight a line where the cursor is
 	set cursorline
 endif
+
+
+" Ripgrep advanced
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+" Use Rg as default vim grep program
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
