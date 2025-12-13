@@ -1,0 +1,8 @@
+snippet ntl "Log"
+NT.Log($"[Analytics] $1");
+endsnippet
+
+snippet an "analytics"
+var parameters = new DTDCustomEventParameters();
+DTDAnalytics.CustomEvent("$1", parameters);
+endsnippet
