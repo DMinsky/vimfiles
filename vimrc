@@ -152,6 +152,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " === KITTY SUPPORT =============================================================
 " More info here https://sw.kovidgoyal.net/kitty/faq/
+let &t_ut=''
 if &term == 'xterm-kitty'
 	" Mouse support
 	set mouse=a
@@ -227,6 +228,7 @@ Plug 'lambdalisue/fern.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'lifepillar/vim-solarized8'
 if has('python3')
 	Plug 'SirVer/ultisnips'
 endif
@@ -252,7 +254,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 if &term != 'win32'
 	" only for the console, overriden in gvimrc for the gVim
-	colorscheme solarized
+	set termguicolors
+	colorscheme solarized8_high
 	" highlight a line where the cursor is
 	set cursorline
 endif
