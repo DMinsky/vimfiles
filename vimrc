@@ -35,9 +35,6 @@ set background=dark
 " enable syntax highlighting
 syntax on
 
-" hightlight search results
-set hls
-
 " do not save backup files
 set nobackup      
 
@@ -49,10 +46,24 @@ set makeprg=build.bat\ %
 " this should be cl compiler error message format
 set errorformat=%f(%l):\ %m
 
+" hightlight search results
+set hls
 " ingnore case when search by default
 set ignorecase
 " but consider casing where capital letters are present
 set smartcase
+" incremental search
+set incsearch
+" search visually selected with * and #
+function! s:VSetSearch()
+    let temp = @s
+    norm! gv"sy
+    let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
+    let @s = temp
+endfunction
+
+xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
+xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
 
 " shole line numbers on the left
 set number
@@ -64,6 +75,9 @@ set visualbell
 
 " Treat all the numbers as base10
 set nrformats=
+
+" Do not add a new line at the end of the file
+set nofixeol
 
 "=== My Functions ==============================================================
 function! HeaderToggle()
@@ -82,6 +96,9 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
+
+nnoremap ' `
+nnoremap ` '
 
 " Set a leader key
 let mapleader = ","  
@@ -186,7 +203,8 @@ if &term == 'xterm-kitty'
 endif " if &term == 'xterm-kitty'
 
 " === PLUGINS ==================================================================
-"
+runtime macros/matchit.vim
+
 call plug#begin()
 " The default plugin directory will be as follows:
 "   - Vim (Linux/macOS): '~/.vim/plugged'
@@ -208,6 +226,7 @@ Plug 'DMinsky/vim-colors-solarized'
 Plug 'lambdalisue/fern.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 if has('python3')
 	Plug 'SirVer/ultisnips'
 endif
